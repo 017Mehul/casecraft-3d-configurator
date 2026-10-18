@@ -1,0 +1,739 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Cabin Case 55</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Newsreader:ital,wght@1,400&display=swap" rel="stylesheet">
+<style>
+/* Layout: one-screen product viewer. Header with name + view tabs, a full-height WebGL stage, a slim toolbar for monogram and shell colour. */
+:root{
+  --bg:#e4e7ec;
+  --stage-1:#f4f5f8;
+  --stage-2:#d3d8e0;
+  --fg:#1a1e26;
+  --muted:#5d6572;
+  --line:#c3c9d3;
+  --panel:#eef0f4;
+  --accent:#2f5fd6;
+  --font-body:"Instrument Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --font-mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#1b1f26;--stage-1:#4a5262;--stage-2:#2a303b;--fg:#eceff4;--muted:#9aa3b2;--line:#3a4150;--panel:#242a33;--accent:#8fb0ff;color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#1b1f26;--stage-1:#4a5262;--stage-2:#2a303b;--fg:#eceff4;--muted:#9aa3b2;--line:#3a4150;--panel:#242a33;--accent:#8fb0ff;color-scheme:dark;
+}
+html{height:100%;box-sizing:border-box}
+body{
+  height:100%;margin:0;background:var(--bg);color:var(--fg);
+  font:14px/1.45 var(--font-body);
+  padding-left:max(16px,env(safe-area-inset-left,0px));
+  padding-right:max(16px,env(safe-area-inset-right,0px));
+}
+.app{height:100%;display:flex;flex-direction:column;gap:12px;padding-block:14px;box-sizing:border-box}
+.top{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px 20px}
+.top > div{min-width:0}
+h1{margin:0;font-size:20px;font-weight:600;letter-spacing:-0.01em;text-wrap:balance}
+.spec{margin:2px 0 0;font:400 12px/1.4 var(--font-mono);color:var(--muted);letter-spacing:0.02em}
+.tabs,.seg{display:inline-flex;gap:2px;padding:3px;background:var(--panel);border:1px solid var(--line);border-radius:10px}
+.tabs button,.seg button{
+  appearance:none;border:0;background:transparent;color:var(--muted);cursor:pointer;
+  font:500 11px/1 var(--font-mono);letter-spacing:0.1em;text-transform:uppercase;
+  padding:10px 14px;border-radius:7px;
+}
+.tabs button:hover,.seg button:hover{color:var(--fg)}
+.tabs button[aria-selected="true"],.seg button[aria-selected="true"]{background:var(--fg);color:var(--bg)}
+.seg button{padding:8px 12px}
+button:focus-visible,input:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.stage{
+  position:relative;flex:1;min-height:0;border-radius:14px;overflow:hidden;
+  border:1px solid var(--line);
+  background:radial-gradient(120% 90% at 50% 38%,var(--stage-1) 0%,var(--stage-2) 100%);
+}
+#gl{display:block;width:100%;height:100%;touch-action:none;cursor:grab}
+#gl:active{cursor:grabbing}
+.msg{position:absolute;inset:0;display:grid;place-items:center;padding:24px;text-align:center;color:var(--muted)}
+.tools{display:flex;flex-wrap:wrap;align-items:center;gap:12px 28px}
+.field{display:flex;align-items:center;gap:10px}
+.field label,.field .lab{font:500 11px/1 var(--font-mono);letter-spacing:0.1em;text-transform:uppercase;color:var(--muted)}
+#mono{
+  width:76px;padding:8px 10px;border:1px solid var(--line);border-radius:8px;background:var(--panel);color:var(--fg);
+  font:italic 400 18px/1 "Newsreader",Georgia,serif;text-align:center;text-transform:uppercase;
+}
+.swatches{display:flex;flex-wrap:wrap;gap:8px}
+.cname{font:500 12px/1 var(--font-mono);color:var(--fg);letter-spacing:0.02em;min-width:0}
+.field label input{margin:0 8px 0 0;accent-color:var(--accent);vertical-align:-2px}
+.swatches button{
+  appearance:none;width:28px;height:28px;border-radius:50%;cursor:pointer;
+  border:2px solid var(--panel);box-shadow:0 0 0 1px var(--line);
+}
+.swatches button[aria-pressed="true"]{box-shadow:0 0 0 2px var(--accent)}
+.hint{margin-left:auto;font:400 11px/1.3 var(--font-mono);color:var(--muted);letter-spacing:0.04em}
+@media (max-width:520px){.hint{margin-left:0;width:100%}.tabs button{padding:10px 11px}}
+</style>
+
+<div class="app">
+  <header class="top">
+    <div>
+      <h1>Cabin Case 55</h1>
+      <p class="spec">54 × 35 × 23 cm · hard shell · TSA lock · 4 double spinner wheels</p>
+    </div>
+    <div class="tabs" role="tablist" aria-label="View">
+      <button role="tab" data-view="front" aria-selected="false">Front</button>
+      <button role="tab" data-view="side" aria-selected="false">Side</button>
+      <button role="tab" data-view="back" aria-selected="false">Back</button>
+      <button role="tab" data-view="3d" aria-selected="true">3D</button>
+    </div>
+  </header>
+  <main class="stage" id="stage"><canvas id="gl" aria-label="Interactive 3D model of a cabin suitcase"></canvas></main>
+  <footer class="tools">
+    <div class="field"><label for="mono">Monogram</label><input id="mono" type="text" maxlength="3" value="MG" autocomplete="off" spellcheck="false"></div>
+    <div class="field"><span class="lab">Colour</span>
+      <div class="swatches" id="swatches"></div>
+      <span class="cname" id="cname"></span>
+    </div>
+    <div class="field"><span class="lab">Finish</span>
+      <div class="seg" id="finish">
+        <button type="button" data-f="matte" aria-selected="false">Matte</button>
+        <button type="button" data-f="metal" aria-selected="true">Metallic</button>
+      </div>
+    </div>
+    <div class="field"><label for="dual"><input id="dual" type="checkbox" checked>Dual tone</label></div>
+    <div class="hint">Drag to rotate · scroll or pinch to zoom</div>
+  </footer>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+<script>
+(function () {
+  var stage = document.getElementById('stage');
+  var canvas = document.getElementById('gl');
+
+  var renderer;
+  try {
+    renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true, alpha: true });
+  } catch (e) {
+    var m = document.createElement('div');
+    m.className = 'msg';
+    m.textContent = 'This browser could not start WebGL, so the 3D model cannot be shown.';
+    stage.appendChild(m);
+    return;
+  }
+  renderer.outputEncoding = THREE.sRGBEncoding;
+  renderer.toneMapping = THREE.ACESFilmicToneMapping;
+  renderer.toneMappingExposure = 1.05;
+  renderer.shadowMap.enabled = true;
+  renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+  renderer.setClearColor(0x000000, 0);
+
+  var scene = new THREE.Scene();
+  var camera = new THREE.PerspectiveCamera(22, 1, 20, 1500);
+  var controls = new THREE.OrbitControls(camera, canvas);
+  controls.enableDamping = true;
+  controls.dampingFactor = 0.08;
+  controls.enablePan = false;
+  controls.minDistance = 90;
+  controls.maxDistance = 420;
+  controls.maxPolarAngle = Math.PI / 2 - 0.02;
+  controls.target.set(0, 40, 0);
+
+  /* ---------- dimensions (cm) ---------- */
+  var W = 35, H = 48, D = 23, GAP = 0.4, BS = 2.4;
+  var GROUND = H / 2 + 6.4;
+
+  /* ---------- geometry helpers ---------- */
+  function rrShape(w, h, r) {
+    r = Math.max(0.01, Math.min(r, w / 2 - 0.01, h / 2 - 0.01));
+    var x = -w / 2, y = -h / 2, s = new THREE.Shape();
+    s.moveTo(x + r, y);
+    s.lineTo(x + w - r, y);
+    s.absarc(x + w - r, y + r, r, -Math.PI / 2, 0, false);
+    s.lineTo(x + w, y + h - r);
+    s.absarc(x + w - r, y + h - r, r, 0, Math.PI / 2, false);
+    s.lineTo(x + r, y + h);
+    s.absarc(x + r, y + h - r, r, Math.PI / 2, Math.PI, false);
+    s.lineTo(x, y + r);
+    s.absarc(x + r, y + r, r, Math.PI, Math.PI * 1.5, false);
+    return s;
+  }
+
+  /* Smooth normals across bevels while keeping flat faces flat. */
+  function smooth(g) {
+    var p = g.attributes.position, n = p.count;
+    var fn = new Float32Array(n * 3), cap = new Uint8Array(n);
+    var A = new THREE.Vector3(), B = new THREE.Vector3(), C = new THREE.Vector3(), N = new THREE.Vector3(), T = new THREE.Vector3();
+    var i, k;
+    for (i = 0; i < n; i += 3) {
+      A.fromBufferAttribute(p, i); B.fromBufferAttribute(p, i + 1); C.fromBufferAttribute(p, i + 2);
+      N.copy(C).sub(B); T.copy(A).sub(B); N.cross(T);
+      if (N.lengthSq() > 0) N.normalize();
+      var isCap = Math.abs(N.z) > 0.9999 ? 1 : 0;
+      for (k = 0; k < 3; k++) {
+        fn[(i + k) * 3] = N.x; fn[(i + k) * 3 + 1] = N.y; fn[(i + k) * 3 + 2] = N.z; cap[i + k] = isCap;
+      }
+    }
+    function key(j) {
+      return Math.round(p.getX(j) * 400) + '_' + Math.round(p.getY(j) * 400) + '_' + Math.round(p.getZ(j) * 400);
+    }
+    var map = new Map();
+    for (i = 0; i < n; i++) {
+      if (cap[i]) continue;
+      var kk = key(i), a = map.get(kk);
+      if (!a) { a = []; map.set(kk, a); }
+      a.push(i);
+    }
+    var out = new Float32Array(n * 3), thr = Math.cos(38 * Math.PI / 180);
+    for (i = 0; i < n; i++) {
+      if (cap[i]) { out[i * 3] = fn[i * 3]; out[i * 3 + 1] = fn[i * 3 + 1]; out[i * 3 + 2] = fn[i * 3 + 2]; continue; }
+      var list = map.get(key(i)), x = 0, y = 0, z = 0;
+      for (var q = 0; q < list.length; q++) {
+        var j = list[q];
+        var d = fn[i * 3] * fn[j * 3] + fn[i * 3 + 1] * fn[j * 3 + 1] + fn[i * 3 + 2] * fn[j * 3 + 2];
+        if (d > thr) { x += fn[j * 3]; y += fn[j * 3 + 1]; z += fn[j * 3 + 2]; }
+      }
+      var l = Math.sqrt(x * x + y * y + z * z) || 1;
+      out[i * 3] = x / l; out[i * 3 + 1] = y / l; out[i * 3 + 2] = z / l;
+    }
+    g.setAttribute('normal', new THREE.BufferAttribute(out, 3));
+  }
+
+  function rbox(w, h, d, r, mat, bev) {
+    bev = bev || Math.min(0.15, d / 3, w / 6, h / 6);
+    var sh = rrShape(w - 2 * bev, h - 2 * bev, Math.max(r - bev, 0.02));
+    var g = new THREE.ExtrudeGeometry(sh, {
+      depth: Math.max(d - 2 * bev, 0.01), bevelEnabled: true, bevelThickness: bev, bevelSize: bev,
+      bevelSegments: 3, curveSegments: 6
+    });
+    g.translate(0, 0, -(d - 2 * bev) / 2);
+    smooth(g);
+    return new THREE.Mesh(g, mat);
+  }
+
+  function put(o, parent, x, y, z) {
+    o.position.set(x, y, z);
+    parent.add(o);
+    return o;
+  }
+
+  /* ---------- textures ---------- */
+  function noiseTexture() {
+    var c = document.createElement('canvas'); c.width = c.height = 256;
+    var x = c.getContext('2d'), img = x.createImageData(256, 256);
+    for (var i = 0; i < img.data.length; i += 4) {
+      var v = 110 + Math.random() * 90;
+      img.data[i] = img.data[i + 1] = img.data[i + 2] = v; img.data[i + 3] = 255;
+    }
+    x.putImageData(img, 0, 0);
+    var t = new THREE.CanvasTexture(c);
+    t.wrapS = t.wrapT = THREE.RepeatWrapping;
+    t.repeat.set(0.25, 0.25);
+    return t;
+  }
+
+  var monoCanvas = document.createElement('canvas');
+  monoCanvas.width = 512; monoCanvas.height = 256;
+  var monoTex = new THREE.CanvasTexture(monoCanvas);
+  monoTex.encoding = THREE.sRGBEncoding;
+  monoTex.anisotropy = 8;
+  var monoColor = '#e8eaee';
+  function drawMono(text) {
+    var x = monoCanvas.getContext('2d');
+    x.clearRect(0, 0, 512, 256);
+    x.fillStyle = monoColor;
+    x.font = 'italic 400 150px Newsreader, Georgia, serif';
+    x.textAlign = 'center';
+    x.textBaseline = 'middle';
+    x.fillText(text, 256, 132);
+    monoTex.needsUpdate = true;
+  }
+
+  function dialTexture() {
+    var c = document.createElement('canvas'); c.width = 160; c.height = 240;
+    var x = c.getContext('2d');
+    x.fillStyle = '#202226'; x.fillRect(0, 0, 160, 240);
+    for (var i = 0; i < 3; i++) {
+      var y = 18 + i * 74;
+      x.fillStyle = '#cfd2d7'; x.fillRect(22, y, 116, 56);
+      x.fillStyle = '#8a8e96'; x.fillRect(22, y, 116, 6); x.fillRect(22, y + 50, 116, 6);
+      x.fillStyle = '#202226'; x.font = '500 42px IBM Plex Mono, monospace';
+      x.textAlign = 'center'; x.textBaseline = 'middle';
+      x.fillText('0', 80, y + 30);
+    }
+    var t = new THREE.CanvasTexture(c);
+    t.encoding = THREE.sRGBEncoding; t.anisotropy = 8;
+    return t;
+  }
+
+  function blobTexture() {
+    var c = document.createElement('canvas'); c.width = c.height = 256;
+    var x = c.getContext('2d');
+    var g = x.createRadialGradient(128, 128, 0, 128, 128, 128);
+    g.addColorStop(0, 'rgba(0,0,0,0.6)'); g.addColorStop(0.55, 'rgba(0,0,0,0.22)'); g.addColorStop(1, 'rgba(0,0,0,0)');
+    x.fillStyle = g; x.fillRect(0, 0, 256, 256);
+    return new THREE.CanvasTexture(c);
+  }
+
+  /* ---------- studio environment (soft boxes) ---------- */
+  (function buildEnv() {
+    var es = new THREE.Scene();
+    es.add(new THREE.Mesh(new THREE.BoxGeometry(100, 60, 100), new THREE.MeshBasicMaterial({ color: 0x70757f, side: THREE.BackSide })));
+    function panel(w, h, x, y, z, k, col) {
+      var m = new THREE.Mesh(new THREE.PlaneGeometry(w, h),
+        new THREE.MeshBasicMaterial({ color: new THREE.Color(col).multiplyScalar(k), side: THREE.DoubleSide }));
+      m.position.set(x, y, z); m.lookAt(0, 0, 0); es.add(m);
+    }
+    panel(50, 50, 0, 28, 0, 5, 0xffffff);
+    panel(14, 40, -40, 8, 10, 6, 0xffffff);
+    panel(14, 40, 40, 8, -6, 4, 0xffe9d6);
+    panel(40, 10, 0, 5, -45, 3, 0xdfe8ff);
+    panel(30, 12, 0, -5, 45, 2, 0xffffff);
+    var pm = new THREE.PMREMGenerator(renderer);
+    scene.environment = pm.fromScene(es, 0.03).texture;
+    pm.dispose();
+  })();
+
+  /* ---------- lights ---------- */
+  var key = new THREE.DirectionalLight(0xffffff, 1.3);
+  key.position.set(-40, 90, 60);
+  key.castShadow = true;
+  key.shadow.mapSize.set(2048, 2048);
+  key.shadow.camera.left = -60; key.shadow.camera.right = 60;
+  key.shadow.camera.top = 60; key.shadow.camera.bottom = -60;
+  key.shadow.camera.near = 10; key.shadow.camera.far = 300;
+  key.shadow.bias = -0.0005; key.shadow.normalBias = 0.4;
+  scene.add(key);
+  var rim = new THREE.DirectionalLight(0xcfdcff, 0.9);
+  rim.position.set(50, 50, -80);
+  scene.add(rim);
+  var fill = new THREE.DirectionalLight(0xffffff, 0.3);
+  fill.position.set(60, 30, 60);
+  scene.add(fill);
+
+  /* ---------- materials ---------- */
+  var NOISE = noiseTexture();
+  var shellMat = new THREE.MeshPhysicalMaterial({
+    color: 0x1b1c1e, roughness: 0.58, metalness: 0.05, clearcoat: 0.18, clearcoatRoughness: 0.5,
+    bumpMap: NOISE, roughnessMap: NOISE, bumpScale: 0.25
+  });
+  var plastic = new THREE.MeshStandardMaterial({ color: 0x0f1011, roughness: 0.5, metalness: 0.0 });
+  var plasticLift = new THREE.MeshStandardMaterial({ color: 0x24262a, roughness: 0.55, metalness: 0.0 });
+  var rubber = new THREE.MeshStandardMaterial({ color: 0x0b0b0c, roughness: 0.85, metalness: 0.0, side: THREE.DoubleSide });
+  var metal = new THREE.MeshStandardMaterial({ color: 0x2c2f34, roughness: 0.26, metalness: 0.95 });
+  var steel = new THREE.MeshStandardMaterial({ color: 0xb4bac2, roughness: 0.18, metalness: 1.0 });
+  function teethTexture() {
+    var c = document.createElement('canvas'); c.width = 64; c.height = 32;
+    var x = c.getContext('2d');
+    x.fillStyle = '#101214'; x.fillRect(0, 0, 64, 32);
+    x.fillStyle = '#5c616a';
+    for (var i = 0; i < 2; i++) {
+      x.fillRect(i * 32 + 2, 4, 12, 10);
+      x.fillRect(i * 32 + 18, 18, 12, 10);
+    }
+    var t = new THREE.CanvasTexture(c);
+    t.wrapS = t.wrapT = THREE.RepeatWrapping;
+    t.repeat.set(1.5, 1);
+    t.encoding = THREE.sRGBEncoding; t.anisotropy = 8;
+    return t;
+  }
+  var zip = new THREE.MeshStandardMaterial({ color: 0xffffff, map: teethTexture(), roughness: 0.55, metalness: 0.0 });
+
+  function drawId() {
+    var x = idC.getContext('2d');
+    x.fillStyle = '#d9dce1'; x.fillRect(0, 0, 288, 192);
+    x.fillStyle = '#1c1e22';
+    x.font = '500 20px IBM Plex Mono, monospace';
+    x.textAlign = 'left';
+    x.fillText('BAG ID', 20, 44);
+    x.font = '500 34px IBM Plex Mono, monospace';
+    x.fillText('MG-0055', 20, 92);
+    x.fillStyle = '#7b808a';
+    x.fillRect(20, 112, 248, 2);
+    x.font = '400 16px IBM Plex Mono, monospace';
+    x.fillText('CABIN 55 CM', 20, 146);
+    idTex.needsUpdate = true;
+  }
+  var idC = document.createElement('canvas'); idC.width = 288; idC.height = 192;
+  var idTex = new THREE.CanvasTexture(idC);
+  idTex.encoding = THREE.sRGBEncoding; idTex.anisotropy = 8;
+  drawId();
+
+  var accentMat = shellMat.clone();
+  var accentDark = new THREE.MeshStandardMaterial({ color: 0x3a3d42, roughness: 0.6 });
+
+  var model = new THREE.Group();
+  model.position.y = GROUND;
+  scene.add(model);
+
+  /* ---------- shell halves ---------- */
+  var shellGeo = new THREE.ExtrudeGeometry(rrShape(W - 2 * BS, H - 2 * BS, 3), {
+    depth: D / 2 - GAP - 2 * BS, bevelEnabled: true, bevelThickness: BS, bevelSize: BS,
+    bevelSegments: 8, curveSegments: 10
+  });
+  smooth(shellGeo);
+  var front = new THREE.Mesh(shellGeo, shellMat);
+  front.position.z = GAP + BS;
+  model.add(front);
+  var back = new THREE.Mesh(shellGeo, shellMat);
+  back.rotation.y = Math.PI;
+  back.position.z = -(GAP + BS);
+  model.add(back);
+
+  /* zipper seam ring */
+  var ringShape = rrShape(W + 0.5, H + 0.5, 5.65);
+  ringShape.holes.push(rrShape(W - 1.0, H - 1.0, 4.3));
+  var ringGeo = new THREE.ExtrudeGeometry(ringShape, { depth: 1.0, bevelEnabled: false, curveSegments: 12 });
+  ringGeo.translate(0, 0, -0.5);
+  smooth(ringGeo);
+  model.add(new THREE.Mesh(ringGeo, zip));
+
+  /* accent frame band either side of the zipper */
+  var bandShape = rrShape(W + 0.3, H + 0.3, 5.55);
+  bandShape.holes.push(rrShape(W - 2.0, H - 2.0, 3.8));
+  var bandGeo = new THREE.ExtrudeGeometry(bandShape, { depth: 3.0, bevelEnabled: false, curveSegments: 12 });
+  bandGeo.translate(0, 0, -1.5);
+  smooth(bandGeo);
+  model.add(new THREE.Mesh(bandGeo, accentMat));
+
+  /* ---------- front face: ribbed panel, groove, monogram ---------- */
+  var FZ = D / 2;
+  put(rbox(25, 25, 0.6, 1.4, shellMat, 0.2), model, 0, -8, FZ + 0.1);
+  for (var i = 0; i < 8; i++) {
+    put(rbox(1.3, 21, 0.7, 0.6, shellMat, 0.2), model, (i - 3.5) * 2.8, -8, FZ + 0.45);
+  }
+  put(rbox(25, 0.3, 0.3, 0.1, plastic, 0.08), model, 0, 5.4, FZ + 0.05);
+
+  var monoMat = new THREE.MeshStandardMaterial({
+    map: monoTex, transparent: true, roughness: 0.4, metalness: 0.2,
+    polygonOffset: true, polygonOffsetFactor: -2, polygonOffsetUnits: -2
+  });
+  put(new THREE.Mesh(new THREE.PlaneGeometry(15, 7.5), monoMat), model, 0, 14, FZ + 0.03);
+  drawMono('MG');
+
+  /* ---------- right side hardware: lock on the front half ---------- */
+  var lockG = new THREE.Group();
+  lockG.position.x = W / 2;
+  lockG.rotation.y = Math.PI / 2;
+  model.add(lockG);
+  var LX = -5.2;
+  put(rbox(5.0, 16.5, 0.7, 1.0, accentMat, 0.15), lockG, LX, 5.25, 0.25);
+  put(new THREE.Mesh(new THREE.TorusGeometry(1.2, 0.12, 10, 32), steel), lockG, LX, 11.8, 0.78);
+  put(new THREE.Mesh(new THREE.CircleGeometry(1.1, 28), new THREE.MeshStandardMaterial({ color: 0x1b1d20, roughness: 0.5 })), lockG, LX, 11.8, 0.62);
+  put(rbox(8.0, 1.2, 0.9, 0.4, metal, 0.15), lockG, -3.2, 8.5, 0.95);
+  put(new THREE.Mesh(new THREE.SphereGeometry(0.16, 10, 10), steel), lockG, LX, 10.0, 0.62);
+  put(new THREE.Mesh(new THREE.PlaneGeometry(4.0, 6.0), new THREE.MeshStandardMaterial({ map: dialTexture(), roughness: 0.5 })), lockG, LX, 2.6, 0.62);
+  var keyhole = new THREE.Mesh(new THREE.CylinderGeometry(0.85, 0.85, 0.3, 24), metal);
+  keyhole.rotation.x = Math.PI / 2;
+  put(keyhole, lockG, LX, -1.8, 0.7);
+  /* zipper sliders and pull tab parked on the seam */
+  [14.5, 16.9].forEach(function (py) {
+    put(rbox(1.7, 2.0, 0.7, 0.4, steel, 0.12), lockG, 0, py, 0.6);
+  });
+  put(rbox(0.8, 3.2, 0.22, 0.3, metal, 0.06), lockG, 0, 12.4, 0.95);
+
+  /* ---------- right side carry handle on the back half ---------- */
+  var handleG = new THREE.Group();
+  handleG.position.x = W / 2;
+  handleG.rotation.y = Math.PI / 2;
+  model.add(handleG);
+  var HX = 4.9;
+  put(rbox(5.2, 22, 0.5, 1.5, shellMat, 0.12), handleG, HX, -8, 0.15);
+  put(rbox(2.4, 19, 1.5, 1.1, accentMat, 0.15), handleG, HX, -8, 0.85);
+  var gripMat = accentDark;
+  [-1, -8, -15].forEach(function (cy) {
+    for (var l = -1; l <= 1; l++) {
+      put(rbox(1.4, 0.1, 0.12, 0.04, gripMat, 0.03), handleG, HX, cy + l * 0.3, 1.62);
+    }
+  });
+
+  /* ---------- left side carry handle (smaller, back half) ---------- */
+  var handleL = new THREE.Group();
+  handleL.position.x = -W / 2;
+  handleL.rotation.y = -Math.PI / 2;
+  model.add(handleL);
+  put(rbox(4.4, 16, 0.5, 1.3, shellMat, 0.12), handleL, -4.9, -6, 0.15);
+  put(rbox(2.0, 13.5, 1.3, 1.0, accentMat, 0.15), handleL, -4.9, -6, 0.75);
+  /* latch clips straddling the seam on the left side */
+  [17, -14].forEach(function (ty) {
+    put(rbox(2.2, 3.4, 1.0, 0.7, accentMat, 0.12), handleL, 0, ty, 0.55);
+  });
+
+  /* ---------- top carry handle (front half) ---------- */
+  var topG = new THREE.Group();
+  topG.position.set(0, H / 2, 5.7);
+  model.add(topG);
+  var topPocket = rbox(14, 5, 0.5, 1.8, shellMat, 0.12);
+  topPocket.rotation.x = -Math.PI / 2;
+  put(topPocket, topG, 0, 0.12, 0);
+  put(rbox(1.8, 1.8, 2.6, 0.5, accentMat, 0.15), topG, -5.2, 0.9, 0);
+  put(rbox(1.8, 1.8, 2.6, 0.5, accentMat, 0.15), topG, 5.2, 0.9, 0);
+  put(rbox(11.4, 1.3, 2.2, 0.6, accentMat, 0.2), topG, 0, 1.8, 0);
+
+  /* ---------- front badge and panel screws ---------- */
+  put(rbox(3.6, 3.6, 0.35, 0.5, metal, 0.08), model, -11.5, 19.5, FZ + 0.12);
+  put(rbox(2.4, 2.4, 0.2, 0.3, plastic, 0.05), model, -11.5, 19.5, FZ + 0.25);
+  [-0.6, 0, 0.6].forEach(function (oy) {
+    put(rbox(1.5, 0.2, 0.12, 0.05, steel, 0.03), model, -11.5, 19.5 + oy, FZ + 0.36);
+  });
+  [[-11.3, 3.4], [11.3, 3.4], [-11.3, -19.4], [11.3, -19.4]].forEach(function (s) {
+    var sc = new THREE.Mesh(new THREE.CylinderGeometry(0.38, 0.38, 0.25, 18), steel);
+    sc.rotation.x = Math.PI / 2;
+    put(sc, model, s[0], s[1], FZ + 0.42);
+  });
+
+  /* ---------- back: ID tag and rubber feet ---------- */
+  put(rbox(9, 6, 0.5, 0.8, plasticLift, 0.1), model, 6.5, -10, -D / 2 - 0.05);
+  var idPlane = new THREE.Mesh(new THREE.PlaneGeometry(8.2, 5.4), new THREE.MeshStandardMaterial({ map: idTex, roughness: 0.5 }));
+  idPlane.rotation.y = Math.PI;
+  put(idPlane, model, 6.5, -10, -D / 2 - 0.33);
+  put(rbox(5.5, 1.8, 0.8, 0.8, rubber, 0.15), model, -9, -19.5, -D / 2 - 0.25);
+  put(rbox(5.5, 1.8, 0.8, 0.8, rubber, 0.15), model, 9, -19.5, -D / 2 - 0.25);
+
+  /* ---------- telescopic handle on the back half ---------- */
+  var tele = new THREE.Group();
+  tele.position.set(0, H / 2, -5.8);
+  model.add(tele);
+  var housing = rbox(24, 6.0, 1.0, 1.5, plastic, 0.15);
+  housing.rotation.x = -Math.PI / 2;
+  put(housing, tele, 0, 0.4, 0);
+  var btn = rbox(5, 2.8, 0.4, 0.8, metal, 0.1);
+  btn.rotation.x = -Math.PI / 2;
+  put(btn, tele, 0, 0.95, 0);
+  [-8, 8].forEach(function (px) {
+    put(rbox(3, 1.2, 3, 0.8, plastic, 0.15), tele, px, 1.0, 0);
+    put(new THREE.Mesh(new THREE.CylinderGeometry(0.85, 0.85, 12, 28), metal), tele, px, 6.5, 0);
+    put(new THREE.Mesh(new THREE.CylinderGeometry(1.15, 1.15, 0.9, 28), plastic), tele, px, 12.6, 0);
+    put(new THREE.Mesh(new THREE.CylinderGeometry(0.65, 0.65, 13, 28), metal), tele, px, 19.3, 0);
+  });
+  put(rbox(19.2, 2.6, 3.4, 1.2, plastic, 0.2), tele, 0, 27.2, 0);
+  put(rbox(12, 0.35, 2.2, 0.5, plasticLift, 0.1), tele, 0, 28.45, 0);
+  [-8, 8].forEach(function (px) {
+    put(new THREE.Mesh(new THREE.CylinderGeometry(0.8, 0.8, 0.35, 24), steel), tele, px, 25.4, 0);
+    put(new THREE.Mesh(new THREE.CylinderGeometry(1.22, 1.22, 0.15, 24), steel), tele, px, 11.9, 0);
+  });
+  [[-10.5, 2.2], [-10.5, -2.2], [10.5, 2.2], [10.5, -2.2]].forEach(function (s) {
+    put(new THREE.Mesh(new THREE.CylinderGeometry(0.3, 0.3, 0.15, 14), steel), tele, s[0], 0.92, s[1]);
+  });
+
+  /* ---------- wheels ---------- */
+  function wheel() {
+    var g = new THREE.Group(), w = 1.7, r = 2.5, b = 0.45;
+    var pts = [[0, -w / 2], [r - b, -w / 2], [r - 0.1, -w / 2 + 0.12], [r, -w / 2 + b], [r, w / 2 - b], [r - 0.1, w / 2 - 0.12], [r - b, w / 2], [0, w / 2]]
+      .map(function (p) { return new THREE.Vector2(p[0], p[1]); });
+    g.add(new THREE.Mesh(new THREE.LatheGeometry(pts, 32), rubber));
+    g.add(new THREE.Mesh(new THREE.CylinderGeometry(1.5, 1.5, w + 0.05, 28), steel));
+    for (var side = -1; side <= 1; side += 2) {
+      for (var k = 0; k < 5; k++) {
+        var a = k / 5 * Math.PI * 2;
+        var bolt = new THREE.Mesh(new THREE.CylinderGeometry(0.13, 0.13, 0.1, 10), metal);
+        bolt.position.set(0.95 * Math.cos(a), side * (w / 2 + 0.02), 0.95 * Math.sin(a));
+        g.add(bolt);
+      }
+      var cap = new THREE.Mesh(new THREE.CylinderGeometry(0.45, 0.45, 0.12, 20), metal);
+      cap.position.y = side * (w / 2 + 0.03);
+      g.add(cap);
+    }
+    g.rotation.z = Math.PI / 2;
+    return g;
+  }
+  function wheelUnit(cx, cz) {
+    var u = new THREE.Group();
+    u.position.set(cx, -H / 2, cz);
+    put(rbox(7.2, 4, 5.6, 1.4, accentMat, 0.2), u, 0, 0.3, 0);
+    put(new THREE.Mesh(new THREE.CylinderGeometry(1.6, 1.6, 1.0, 28), metal), u, 0, -2.0, 0);
+    put(rbox(5.8, 0.9, 2.6, 0.4, metal, 0.12), u, 0, -2.5, 0);
+    put(rbox(0.5, 3.4, 2.6, 0.2, metal, 0.1), u, -2.5, -3.7, 0);
+    put(rbox(0.5, 3.4, 2.6, 0.2, metal, 0.1), u, 2.5, -3.7, 0);
+    var axle = new THREE.Mesh(new THREE.CylinderGeometry(0.35, 0.35, 5.6, 14), steel);
+    axle.rotation.z = Math.PI / 2;
+    put(axle, u, 0, -3.9, 0);
+    put(wheel(), u, -1.2, -3.9, 0);
+    put(wheel(), u, 1.2, -3.9, 0);
+    model.add(u);
+  }
+  [[-12.6, 5.8], [12.6, 5.8], [-12.6, -5.8], [12.6, -5.8]].forEach(function (p) { wheelUnit(p[0], p[1]); });
+
+  model.traverse(function (o) { if (o.isMesh) { o.castShadow = true; o.receiveShadow = true; } });
+  monoMat.depthWrite = false;
+
+  /* ---------- floor shadow and contact blobs ---------- */
+  var floor = new THREE.Mesh(new THREE.PlaneGeometry(400, 400), new THREE.ShadowMaterial({ opacity: 0.22 }));
+  floor.rotation.x = -Math.PI / 2;
+  floor.receiveShadow = true;
+  scene.add(floor);
+  var blobTex = blobTexture();
+  function blob(w, h, x, z, op) {
+    var m = new THREE.Mesh(new THREE.PlaneGeometry(w, h), new THREE.MeshBasicMaterial({ map: blobTex, transparent: true, depthWrite: false, opacity: op }));
+    m.rotation.x = -Math.PI / 2; m.position.set(x, 0.05, z); scene.add(m);
+  }
+  blob(72, 50, 0, 0, 0.55);
+  [[-12.6, 5.8], [12.6, 5.8], [-12.6, -5.8], [12.6, -5.8]].forEach(function (p) { blob(11, 11, p[0], p[1], 0.8); });
+
+  /* ---------- camera views ---------- */
+  var PRESETS = {
+    front: { az: 0, el: 3 },
+    side: { az: 90, el: 3 },
+    back: { az: 180, el: 3 },
+    '3d': { az: 38, el: 14 }
+  };
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var currentView = '3d', userMoved = false, tw = null;
+
+  function fit() {
+    var t = Math.tan(THREE.MathUtils.degToRad(camera.fov / 2));
+    return Math.max(44 / t, 26 / (t * camera.aspect)) * 1.05;
+  }
+  function placeCamera(th, ph, r) {
+    var s = new THREE.Spherical(r, ph, th);
+    camera.position.copy(controls.target).add(new THREE.Vector3().setFromSpherical(s));
+    camera.lookAt(controls.target);
+  }
+  function setTabs(name) {
+    document.querySelectorAll('.tabs button').forEach(function (b) {
+      b.setAttribute('aria-selected', b.dataset.view === name ? 'true' : 'false');
+    });
+  }
+  function goTo(name, instant) {
+    var p = PRESETS[name];
+    currentView = name; userMoved = false; setTabs(name);
+    var toTh = THREE.MathUtils.degToRad(p.az), toPh = Math.PI / 2 - THREE.MathUtils.degToRad(p.el), toR = fit();
+    if (instant) { tw = null; placeCamera(toTh, toPh, toR); controls.update(); return; }
+    var s = new THREE.Spherical().setFromVector3(camera.position.clone().sub(controls.target));
+    var dt = toTh - s.theta;
+    dt = Math.atan2(Math.sin(dt), Math.cos(dt));
+    tw = { t0: performance.now(), dur: reduce ? 1 : 800, th: s.theta, ph: s.phi, r: s.radius, dTh: dt, toPh: toPh, toR: toR };
+  }
+  controls.addEventListener('start', function () {
+    tw = null; userMoved = true; currentView = '3d'; setTabs('3d');
+  });
+  document.querySelector('.tabs').addEventListener('click', function (e) {
+    var b = e.target.closest('button[data-view]');
+    if (b) goTo(b.dataset.view, false);
+  });
+
+  /* ---------- sizing ---------- */
+  function resize() {
+    var w = stage.clientWidth, h = stage.clientHeight;
+    if (!w || !h) return;
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+    renderer.setSize(w, h, false);
+    camera.aspect = w / h;
+    camera.updateProjectionMatrix();
+    if (!userMoved) goTo(currentView, true);
+  }
+  if (window.ResizeObserver) new ResizeObserver(resize).observe(stage);
+  window.addEventListener('resize', resize);
+  resize();
+  goTo('3d', true);
+
+  /* ---------- toolbar ---------- */
+  var mono = document.getElementById('mono');
+  mono.addEventListener('input', function () {
+    var v = mono.value.toUpperCase().slice(0, 3);
+    drawMono(v);
+  });
+  if (document.fonts && document.fonts.load) {
+    document.fonts.load('italic 400 150px Newsreader').then(function () { drawMono(mono.value.toUpperCase().slice(0, 3)); drawId(); }).catch(function () {});
+  }
+  /* ---------- colourways: shell colour + contrast accent ---------- */
+  var PALETTES = [
+    { n: 'Charcoal Black', s: '#1b1c1e', a: '#4a4d54' },
+    { n: 'Mocha White', s: '#e8e1d3', a: '#7b4a3c' },
+    { n: 'Cambridge Brown', s: '#6a4838', a: '#e4d9c6' },
+    { n: 'Pink Blaze', s: '#ef7fa0', a: '#7a2a4a' },
+    { n: 'Violet Ash', s: '#a99dbb', a: '#4a3b66' },
+    { n: 'Forest Green', s: '#2e5a43', a: '#e0d9c2' },
+    { n: 'Midnight Blue', s: '#1d2a4a', a: '#c9a46c' },
+    { n: 'Graphite Grey', s: '#575b63', a: '#e6e7ea' },
+    { n: 'Olive Green', s: '#6a6d3b', a: '#3b2f22' },
+    { n: 'Navy', s: '#1a2a5c', a: '#dcdde2' }
+  ];
+  var cur = 1, dual = true;
+  var swEl = document.getElementById('swatches');
+  var nameEl = document.getElementById('cname');
+  var dualEl = document.getElementById('dual');
+  PALETTES.forEach(function (p, i) {
+    var b = document.createElement('button');
+    b.type = 'button'; b.title = p.n; b.setAttribute('aria-label', p.n); b.dataset.i = i;
+    swEl.appendChild(b);
+  });
+  function applyPalette() {
+    var p = PALETTES[cur];
+    var sc = new THREE.Color(p.s), ac = new THREE.Color(dual ? p.a : p.s);
+    var L = 0.2126 * sc.r + 0.7152 * sc.g + 0.0722 * sc.b;
+    sc.convertSRGBToLinear(); ac.convertSRGBToLinear();
+    shellMat.color.copy(sc);
+    accentMat.color.copy(ac);
+    accentDark.color.copy(ac).multiplyScalar(0.7);
+    if (dual) rubber.color.copy(ac).multiplyScalar(0.5); else rubber.color.setHex(0x0b0b0c);
+    monoColor = L > 0.5 ? '#2b221d' : '#e8eaee';
+    drawMono(mono.value.toUpperCase().slice(0, 3));
+    nameEl.textContent = p.n + (dual ? ' · dual tone' : '');
+    [].forEach.call(swEl.children, function (b, i) {
+      var q = PALETTES[i];
+      b.style.background = dual ? 'linear-gradient(135deg,' + q.s + ' 50%,' + q.a + ' 50%)' : q.s;
+      b.setAttribute('aria-pressed', i === cur ? 'true' : 'false');
+    });
+  }
+  swEl.addEventListener('click', function (e) {
+    var b = e.target.closest('button[data-i]');
+    if (!b) return;
+    cur = +b.dataset.i;
+    applyPalette();
+  });
+  dualEl.addEventListener('change', function () { dual = dualEl.checked; applyPalette(); });
+  applyPalette();
+
+  /* ---------- finish: matte or metallic ---------- */
+  var finish = 'metal';
+  var finEl = document.getElementById('finish');
+  var FIN = {
+    matte: {
+      shell: { m: 0.05, r: 0.95, cc: 0.18, ccr: 0.5, env: 0.9, bump: 0.25 },
+      acc: { m: 0.05, r: 0.95, cc: 0.18, ccr: 0.5, env: 0.9, bump: 0.25 }
+    },
+    metal: {
+      shell: { m: 0.75, r: 0.5, cc: 1.0, ccr: 0.08, env: 1.4, bump: 0.08 },
+      acc: { m: 0.9, r: 0.42, cc: 0.8, ccr: 0.1, env: 1.5, bump: 0.06 }
+    }
+  };
+  function applyFinish() {
+    var f = FIN[finish];
+    [[shellMat, f.shell], [accentMat, f.acc]].forEach(function (pr) {
+      var m = pr[0], o = pr[1];
+      m.metalness = o.m; m.roughness = o.r; m.clearcoat = o.cc; m.clearcoatRoughness = o.ccr;
+      m.envMapIntensity = o.env; m.bumpScale = o.bump;
+    });
+    [].forEach.call(finEl.children, function (b) {
+      b.setAttribute('aria-selected', b.dataset.f === finish ? 'true' : 'false');
+    });
+  }
+  finEl.addEventListener('click', function (e) {
+    var b = e.target.closest('button[data-f]');
+    if (!b) return;
+    finish = b.dataset.f;
+    applyFinish();
+  });
+  applyFinish();
+
+  /* ---------- loop ---------- */
+  function ease(k) { return k < 0.5 ? 4 * k * k * k : 1 - Math.pow(-2 * k + 2, 3) / 2; }
+  function frame(now) {
+    requestAnimationFrame(frame);
+    if (document.hidden) return;
+    if (tw) {
+      var k = Math.min(1, (now - tw.t0) / tw.dur), e = ease(k);
+      placeCamera(tw.th + tw.dTh * e, tw.ph + (tw.toPh - tw.ph) * e, tw.r + (tw.toR - tw.r) * e);
+      if (k >= 1) tw = null;
+    }
+    controls.update();
+    renderer.render(scene, camera);
+  }
+  requestAnimationFrame(frame);
+})();
+</script>
+
+</body></html>
