@@ -292,6 +292,44 @@ function buildSuitcase() {
   const tagMark=new THREE.Mesh(new THREE.PlaneGeometry(.15,.13),new THREE.MeshBasicMaterial({map:makeMonogramTexture(state.monogram),transparent:true,depthWrite:false}));
   tagMark.position.set(.83,.57,.516); tagGroup.add(tagMark); tagGroup.userData.tagMark=tagMark;
   tagGroup.visible=state.tag;
+  // Source-model details restored from cabin-case.html: central TSA lock,
+  // side carry handles, top carry handle, badge and front fasteners.
+  const lockBody=roundedBox(shellGroup,'TSA lock housing',[.30,.34,.085],[0,.12,.465],hardwareMaterial,.055,8);
+  const lockInset=roundedBox(shellGroup,'TSA lock inset',[.235,.265,.022],[0,.12,.518],trim,.035,6);
+  for(let row=0;row<3;row++){
+    const dial=roundedBox(shellGroup,'TSA combination dial',[.16,.048,.014],[0,.19-row*.07,.534],makeMaterial(0xc9cbd0,.32,.55),.008,3);
+    dial.userData.sourceDetail=true;
+  }
+  roundedBox(shellGroup,'TSA release button',[.075,.035,.018],[.085,-.005,.535],hardwareMaterial,.012,4);
+  // Twin recessed side carry handles, with hinge caps and exposed pivot screws.
+  for(const side of [-1,1]){
+    const handleBed=roundedBox(shellGroup,'side carry handle recess',[.09,.56,.19],[side*1.025,.05,0],rubber,.06,8);
+    handleBed.rotation.y=side*Math.PI/2;
+    const handle=roundedBox(shellGroup,'side carry handle grip',[.11,.42,.12],[side*1.075,.05,0],hardwareMaterial,.055,8);
+    handle.rotation.y=side*Math.PI/2;
+    for(const yy of [-.205,.305]){
+      const hinge=new THREE.Mesh(new THREE.CylinderGeometry(.045,.045,.045,24),trim);
+      hinge.rotation.z=Math.PI/2;hinge.position.set(side*1.09,yy,0);shellGroup.add(hinge);
+      const screw=new THREE.Mesh(new THREE.CylinderGeometry(.018,.018,.012,16),hardwareMaterial);
+      screw.rotation.z=Math.PI/2;screw.position.set(side*1.12,yy,0);shellGroup.add(screw);
+    }
+  }
+  // Top carry handle and molded anchor pads.
+  for(const x of [-.31,.31]){
+    roundedBox(shellGroup,'top handle anchor',[.19,.12,.14],[x,1.40,.02],trim,.04,5);
+    const pivot=new THREE.Mesh(new THREE.CylinderGeometry(.042,.042,.10,24),hardwareMaterial);
+    pivot.rotation.z=Math.PI/2;pivot.position.set(x,1.43,.055);shellGroup.add(pivot);
+  }
+  roundedBox(shellGroup,'top carry handle grip',[.54,.12,.15],[0,1.48,.015],hardwareMaterial,.055,8);
+  roundedBox(shellGroup,'front maker badge',[.38,.18,.025],[0,.98,.438],hardwareMaterial,.025,5);
+  roundedBox(shellGroup,'badge inset',[.31,.11,.012],[0,.98,.456],trim,.018,4);
+  for(const x of [-.84,.84]){
+    for(const y of [-1.18,1.18]){
+      const fastener=new THREE.Mesh(new THREE.CylinderGeometry(.022,.022,.012,20),hardwareMaterial);
+      fastener.rotation.x=Math.PI/2;fastener.position.set(x,y,.43);shellGroup.add(fastener);
+      roundedBox(shellGroup,'fastener slot',[.012,.003,.003],[x,y,.439],rubber,.001,1);
+    }
+  }
   // Ground shadow plane.
   groundPlane=new THREE.Mesh(new THREE.PlaneGeometry(200,200),new THREE.ShadowMaterial({opacity:.14}));
   groundPlane.rotation.x=-Math.PI/2; groundPlane.position.y=-1.68; groundPlane.receiveShadow=true; scene.add(groundPlane);
