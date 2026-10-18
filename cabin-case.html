@@ -1,4 +1,3 @@
-<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
 <title>Cabin Case 55</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -7,24 +6,16 @@
 <style>
 /* Layout: one-screen product viewer. Header with name + view tabs, a full-height WebGL stage, a slim toolbar for monogram and shell colour. */
 :root{
-  --bg:#e4e7ec;
-  --stage-1:#f4f5f8;
-  --stage-2:#d3d8e0;
+  --bg:#ffffff;
+  --stage-1:#ffffff;
+  --stage-2:#ffffff;
   --fg:#1a1e26;
   --muted:#5d6572;
-  --line:#c3c9d3;
-  --panel:#eef0f4;
+  --line:#e1e4ea;
+  --panel:#f4f5f7;
   --accent:#2f5fd6;
   --font-body:"Instrument Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
   --font-mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
-}
-@media (prefers-color-scheme: dark){
-  :root:not([data-theme="light"]){
-    --bg:#1b1f26;--stage-1:#4a5262;--stage-2:#2a303b;--fg:#eceff4;--muted:#9aa3b2;--line:#3a4150;--panel:#242a33;--accent:#8fb0ff;color-scheme:dark;
-  }
-}
-:root[data-theme="dark"]{
-  --bg:#1b1f26;--stage-1:#4a5262;--stage-2:#2a303b;--fg:#eceff4;--muted:#9aa3b2;--line:#3a4150;--panel:#242a33;--accent:#8fb0ff;color-scheme:dark;
 }
 html{height:100%;box-sizing:border-box}
 body{
@@ -34,7 +25,7 @@ body{
   padding-right:max(16px,env(safe-area-inset-right,0px));
 }
 .app{height:100%;display:flex;flex-direction:column;gap:12px;padding-block:14px;box-sizing:border-box}
-.top{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px 20px}
+.top{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:10px 20px}
 .top > div{min-width:0}
 h1{margin:0;font-size:20px;font-weight:600;letter-spacing:-0.01em;text-wrap:balance}
 .spec{margin:2px 0 0;font:400 12px/1.4 var(--font-mono);color:var(--muted);letter-spacing:0.02em}
@@ -50,7 +41,7 @@ h1{margin:0;font-size:20px;font-weight:600;letter-spacing:-0.01em;text-wrap:bala
 button:focus-visible,input:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .stage{
   position:relative;flex:1;min-height:0;border-radius:14px;overflow:hidden;
-  border:1px solid var(--line);
+  border:0;
   background:radial-gradient(120% 90% at 50% 38%,var(--stage-1) 0%,var(--stage-2) 100%);
 }
 #gl{display:block;width:100%;height:100%;touch-action:none;cursor:grab}
@@ -77,10 +68,6 @@ button:focus-visible,input:focus-visible{outline:2px solid var(--accent);outline
 
 <div class="app">
   <header class="top">
-    <div>
-      <h1>Cabin Case 55</h1>
-      <p class="spec">54 × 35 × 23 cm · hard shell · TSA lock · 4 double spinner wheels</p>
-    </div>
     <div class="tabs" role="tablist" aria-label="View">
       <button role="tab" data-view="front" aria-selected="false">Front</button>
       <button role="tab" data-view="side" aria-selected="false">Side</button>
@@ -735,5 +722,3 @@ button:focus-visible,input:focus-visible{outline:2px solid var(--accent);outline
   requestAnimationFrame(frame);
 })();
 </script>
-
-</body></html>
